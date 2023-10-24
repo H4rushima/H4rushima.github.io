@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Lofi Study Beats Video</title>
+</head>
+<body>
+
+    <script>
+        async function getRandomVideo() {
+            const apiKey = 'AIzaSyAxTm7CcryCFLH0mepwtco_Q5HF-xEX6Os'; // Replace with your own API key
+            const searchTerm = 'lofi study beats';
+            const maxResults = 20;
+            const randomIndex = Math.floor(Math.random() * maxResults);
+
+            const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(searchTerm)}&type=video&maxResults=${maxResults}`);
+            const data = await response.json();
+
+            const videoId = data.items[randomIndex].id.videoId;
+            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+            // Automatically redirect to the random video
+            window.location.href = videoUrl;
+        }
+
+        getRandomVideo();
+    </script>
+</body>
+</html>
